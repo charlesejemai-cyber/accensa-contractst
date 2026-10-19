@@ -8,6 +8,11 @@ exception: while the project is below `1.0.0`, breaking changes bump the
 **minor** version, and they are called out as such.
 
 ## [Unreleased]
+- test(receipt-shard): pin that `consolidate` reports an absent batch with the
+  typed `Error::BatchNotFound` instead of aborting the host call; new
+  `contracts/receipt-shard/tests/consolidate_missing_state.rs` reaches the
+  source batch read with the key missing (never anchored, and removed after
+  anchoring) and asserts the returned variant (issue #675).
 - **Documentation (#750, #751):** Documented the 4 public items of refund-vault `nft_escrow` (`deposit`, `claim`, `refund`, `get`) and the 4 of state-channel `multi_asset` (`MultiAssetChannelOpenedEvent`, `MultiAssetSettledEvent`, `open`, `get`) with `///` rustdoc, covering role, pre-conditions and each `Error` arm for off-chain integrators; comments only, no code change.
 - **`stream-vault` (issue #607): assert all five stream-vault lifecycle event shapes.**
   Walk a stream through create, partial claim, pause, resume, and cancel transitions, asserting exact XDR shapes for `StreamCreatedEvent`, `StreamClaimedEvent`, `StreamPausedEvent`, `StreamResumedEvent`, and `StreamCancelledEvent`. Test-only — no contract behavior change.

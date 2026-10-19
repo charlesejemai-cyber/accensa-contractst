@@ -181,3 +181,8 @@
 
 - [x] Add `///` rustdoc to `MultiAssetChannelOpenedEvent`, `MultiAssetSettledEvent`, `open` and `get` (#751)
   - `contracts/state-channel/src/multi_asset.rs` — doc comments only; role, pre-conditions and each `Error` arm documented, signatures and bodies unchanged
+
+## Issue #675: report a missing batch from receipt-shard::consolidate
+
+- [x] `consolidate` answers a missing source batch with the typed `Error::BatchNotFound` (#675)
+  - `contracts/receipt-shard/tests/consolidate_missing_state.rs` — regression test for the never-anchored and removed-batch arms
