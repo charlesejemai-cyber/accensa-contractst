@@ -181,3 +181,9 @@
 
 - [x] Add `///` rustdoc to `MultiAssetChannelOpenedEvent`, `MultiAssetSettledEvent`, `open` and `get` (#751)
   - `contracts/state-channel/src/multi_asset.rs` — doc comments only; role, pre-conditions and each `Error` arm documented, signatures and bodies unchanged
+
+## Issue #676: report missing range keys from receipt-shard::insert_migrated_batch
+
+- [x] `insert_migrated_batch` answers a missing `DataKey::StartBatchId` / `DataKey::EndBatchId` with the typed `Error::NotInitialized` (#676)
+  - `contracts/receipt-shard/src/consolidation.rs` — both range-key reads use `.ok_or(Error::NotInitialized)?`
+  - `contracts/receipt-shard/tests/insert_migrated_batch_missing_state.rs` — regression tests for each read site

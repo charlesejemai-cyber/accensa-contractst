@@ -8,6 +8,7 @@ exception: while the project is below `1.0.0`, breaking changes bump the
 **minor** version, and they are called out as such.
 
 ## [Unreleased]
+- fix(receipt-shard): `insert_migrated_batch` now reports a missing construction-time `DataKey::StartBatchId` or `DataKey::EndBatchId` with the typed `Error::NotInitialized` instead of aborting the host call via `.unwrap()`; new `contracts/receipt-shard/tests/insert_migrated_batch_missing_state.rs` reaches the migration arm with either key removed (issue #676).
 - **Documentation (#750, #751):** Documented the 4 public items of refund-vault `nft_escrow` (`deposit`, `claim`, `refund`, `get`) and the 4 of state-channel `multi_asset` (`MultiAssetChannelOpenedEvent`, `MultiAssetSettledEvent`, `open`, `get`) with `///` rustdoc, covering role, pre-conditions and each `Error` arm for off-chain integrators; comments only, no code change.
 - **`stream-vault` (issue #607): assert all five stream-vault lifecycle event shapes.**
   Walk a stream through create, partial claim, pause, resume, and cancel transitions, asserting exact XDR shapes for `StreamCreatedEvent`, `StreamClaimedEvent`, `StreamPausedEvent`, `StreamResumedEvent`, and `StreamCancelledEvent`. Test-only — no contract behavior change.
